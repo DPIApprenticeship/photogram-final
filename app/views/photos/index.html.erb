@@ -8,6 +8,7 @@
 
 <hr>
 
+<% if @current_user %>
 <div>
   <div>
     <h2>
@@ -63,6 +64,8 @@
 </div>
 
 <hr>
+<% end %>
+
 <div>
   <div>
     <table border="1">
@@ -114,7 +117,7 @@
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src="<%= a_photo.image %>">
         </td>
 
         <td>
