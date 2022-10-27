@@ -12,4 +12,7 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+  belongs_to(:user, {:foreign_key => :owner_id, :class_name => "User"})
+  has_many(:likes)
+  has_many(:comments)
 end
