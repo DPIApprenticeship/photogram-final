@@ -14,9 +14,9 @@
       <td>
 
         <% if @current_user %>
-            <% follow_request = FollowRequest.where(:recipient_id => user.id).where(:sender_id => @current_user.id).first%>
+          <% follow_request = FollowRequest.where(:recipient_id => user.id).where(:sender_id => @current_user.id).first%>
           <% if @current_user.leaders.include?(user)%>
-            <a>Unfollow</a>
+            <a href="/delete_follow_request/<%= follow_request.id %>">Unfollow</a>
           <% elsif follow_request %>
               <p>Request sent. </p><a href="/delete_follow_request/<%= follow_request.id %>">Cancel</a>
           <% else %>
