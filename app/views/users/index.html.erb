@@ -12,8 +12,9 @@
       <td><%= user.username %></td>
       <td><%= user.private == true ? "Yes" : "No" %></td>
       <td>
-        <% follow_request = FollowRequest.where(:recipient_id => user.id).where(:sender_id => @current_user.id).first%>
+
         <% if @current_user %>
+            <% follow_request = FollowRequest.where(:recipient_id => user.id).where(:sender_id => @current_user.id).first%>
           <% if @current_user.leaders.include?(user)%>
             <a>Unfollow</a>
           <% elsif follow_request %>
