@@ -12,9 +12,12 @@
       <td><%= user.username %></td>
       <td><%= user.private == true ? "Yes" : "No" %></td>
       <td>
+        <% follow_request = FollowRequest.where(:recipient_id => user.id).where(:sender_id => @current_user.id).first%>
         <% if @current_user %>
           <% if @current_user.leaders.include?(user)%>
             <a>Unfollow</a>
+          <% elsif follow_request %>
+              <p>Request sent. </p><a href="/delete_follow_request/<%= follow_request.id %>">Cancel</a>
           <% else %>
             <form action="/insert_follow_request" method="post">
               <input type="hidden" name="query_recipient_id" value="<%= user.id %>">
