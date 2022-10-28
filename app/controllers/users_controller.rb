@@ -11,8 +11,7 @@ class UsersController < ApplicationController
       @photos = Photo.where(:owner_id => @user.id)
       render({:template => "users/show.html.erb"})
     else
-      flash.alert = "You must sign in first"
-      redirect_to("/user_sign_in")
+      redirect_to("/user_sign_in", { :notice => "You must sign in first." })
     end
 
   end
