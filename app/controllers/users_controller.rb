@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       
       # current_uri = request.env['PATH_INFO']
       @user = User.where(:username => username).first
+      @already_followed = FollowRequest.where(:sender_id => @current_user.id).where(:recipient_id => @user.id).count > 0
       
       if params_value == "liked_photos"
         @display = "Liked Photos (#{@user.liked_photos.count})"

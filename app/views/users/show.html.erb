@@ -6,6 +6,14 @@
 
   <dt>Followers</dt>
   <dd><%= @user.followers.count %></dd>
+  <dd>
+    <% if !@already_followed && @user != @current_user%>
+    <form action="/insert_follow_request" method="post">
+      <input type="hidden" name="query_recipient_id" value="<%= @user.id %>">
+      <button>Follow</button>
+    </form>
+    <% end %>
+  </dd>
 
   <dt>Following</dt>
   <dd><%= @user.leaders.count %></dd>
