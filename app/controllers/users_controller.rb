@@ -19,6 +19,10 @@ class UsersController < ApplicationController
       
       if params_value == "liked_photos"
         @photos = @user.liked_photos
+      elsif params_value == "feed"
+        @photos = @user.feed
+      elsif params_value == "discover"
+        @photos = @user.discovery
       else
         @photos = @user.photos
       end
