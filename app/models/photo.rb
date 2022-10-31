@@ -12,6 +12,8 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   belongs_to(:user, {:foreign_key => :owner_id, :class_name => "User"})
   has_many(:likes)
   has_many(:comments)
