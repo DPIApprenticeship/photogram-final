@@ -70,9 +70,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Caption
@@ -107,44 +104,43 @@
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
-      <tr>
-        <td>
-          <%= a_photo.id %>
-        </td>
+        <% if !a_photo.user.private %>
+        <tr>
 
-        <td>
-          <%= a_photo.caption %>
-        </td>
+          <td>
+            <%= a_photo.caption %>
+          </td>
 
-        <td>
-          <img src="<%= a_photo.image %>">
-        </td>
+          <td>
+            <img src="<%= a_photo.image %>">
+          </td>
 
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
+          <td>
+            <%= a_photo.likes_count %>
+          </td>
 
-        <td>
-          <%= a_photo.owner_id %>
-        </td>
+          <td>
+            <%= a_photo.owner_id %>
+          </td>
 
-        <td>
-          <%= a_photo.comments_count %>
-        </td>
+          <td>
+            <%= a_photo.comments_count %>
+          </td>
 
-        <td>
-          <%= time_ago_in_words(a_photo.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
-        </td>
+          <td>
+            <%= time_ago_in_words(a_photo.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(a_photo.updated_at) %> ago
+          </td>
 
-        <td>
-          <a href="/photos/<%= a_photo.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
+          <td>
+            <a href="/photos/<%= a_photo.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <% end %>
       <% end %>
     </table>
   </div>
