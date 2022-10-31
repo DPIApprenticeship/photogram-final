@@ -56,12 +56,13 @@
       <tr>
 
         <th>
-          Caption
+          Image
         </th>
 
         <th>
-          Image
+          Caption
         </th>
+
 
         <th>
           Likes count
@@ -92,12 +93,12 @@
         <tr>
 
           <td>
-            <%= a_photo.caption %>
+            <img src="<%= a_photo.image %>">
           </td>
 
-          <%# <td>
-            <img src="<%= a_photo.image %>
-          <% # /td> %>
+          <td>
+            <%= a_photo.caption %>
+          </td>
 
           <td>
             <%= a_photo.likes_count %>
