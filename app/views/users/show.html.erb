@@ -1,5 +1,23 @@
 <h1><%= @user.username %></h1>
 
+<dl>
+  <dt>Private?</dt>
+  <dd><%= @user.private %></dd>
+
+  <dt>Followers</dt>
+  <dd><%= @user.followers.count %></dd>
+
+  <dt>Following</dt>
+  <dd><%= @user.leaders.count %></dd>
+</dl>
+
+<ul>
+  <li><a href="/users/<%= @user.username %>">Profile</a></li>
+  <li><a>Liked Photos</a></li>
+  <li><a>Feed</a></li>
+  <li><a>Discover</a></li>
+</ul>
+
 <table border="1">
   <tr>
     <th>Image</th>
@@ -12,7 +30,7 @@
   <% @photos.each do |photo| %>
     <tr>
       <td><img src="<%= photo.image %>"></td>
-      <td><%= @user.username %></td>
+      <td><%= photo.user.username %></td>
       <td><%= photo.caption %></td>
       <td><%= time_ago_in_words(photo.created_at) %></td>
       <td><%= photo.likes %></td>

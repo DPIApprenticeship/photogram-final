@@ -7,12 +7,27 @@ class UsersController < ApplicationController
   def show
     if @current_user
       username = params.fetch(:username)
+      if params.key?(:photos_to_show)
+        params_value = params.fetch(:photos_to_show)
+      else
+        params_value = nil
+      end
+      
+      
+      # current_uri = request.env['PATH_INFO']
       @user = User.where(:username => username).first
-      @photos = Photo.where(:owner_id => @user.id)
+      
+      if params_value == "liked_photos"
+        @photos = @user.liked_photos
+      else
+        @photos = @user.photos
+      end
+
       render({:template => "users/show.html.erb"})
     else
       redirect_to("/user_sign_in", { :notice => "You must sign in first." })
     end
 
   end
+
 end
