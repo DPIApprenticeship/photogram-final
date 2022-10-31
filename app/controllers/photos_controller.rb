@@ -14,6 +14,12 @@ class PhotosController < ApplicationController
 
     @the_photo = matching_photos.at(0)
 
+    @already_liked = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).count > 0
+
+    if @already_liked
+      @like_id = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).first.id
+    end
+
     render({ :template => "photos/show.html.erb" })
   end
 
