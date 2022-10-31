@@ -18,12 +18,16 @@ class UsersController < ApplicationController
       @user = User.where(:username => username).first
       
       if params_value == "liked_photos"
+        @display = "Liked Photos (#{@user.liked_photos.count})"
         @photos = @user.liked_photos
       elsif params_value == "feed"
+        @display = "Feed (#{@user.feed.count})"
         @photos = @user.feed
       elsif params_value == "discover"
+        @display = "Discover (#{@user.discovery.count})"
         @photos = @user.discovery
       else
+        @display = "Own Photos (#{@user.photos.count})"
         @photos = @user.photos
       end
 
