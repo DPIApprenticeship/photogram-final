@@ -48,7 +48,26 @@
 
   <dt>Following</dt>
   <dd><%= @user.leaders.count %></dd>
+
+  <% if @user == @current_user %>
+    <dt>Edit user</dt>
+    <dd>
+      <form action="/modify_user" method="post">
+        <input type="hidden" name="query_email" value="<%= @user.email %>">
+        <input type="hidden" name="query_password" value="<% @user.password_digest %>">
+        <input type="hidden" name="query_password_confirmation" value="<%= @user.password_digest %>">
+
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="query_username" value="<%= @user.username %>">
+        <label for="private">Private?</label>
+        <input type="checkbox" id="private" name="query_private" value="1" <%= "checked" if @current_user.private %>>
+        <button>Update user</button>
+      </form>
+    </dd>
+  <% end %>
 </dl>
+
 
 <ul>
   <li><a href="/users/<%= @user.username %>">Profile</a></li>
