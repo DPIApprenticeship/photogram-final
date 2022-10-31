@@ -16,7 +16,9 @@ class UsersController < ApplicationController
       
       # current_uri = request.env['PATH_INFO']
       @user = User.where(:username => username).first
-      @already_followed = FollowRequest.where(:sender_id => @current_user.id).where(:recipient_id => @user.id).count > 0
+      requested_follow = FollowRequest.where(:sender_id => @current_user.id).where(:recipient_id => @user.id)
+      @already_followed = requested_follow.count > 0
+      
       
       if params_value == "liked_photos"
         @display = "Liked Photos (#{@user.liked_photos.count})"
@@ -32,7 +34,17 @@ class UsersController < ApplicationController
         @photos = @user.photos
       end
 
-      render({:template => "users/show.html.erb"})
+      if @user.private
+        if @already_followed && requested_follow.first.status == "accepted" || @user == @current_user
+          render({:template => "users/show.html.erb"})
+        else
+          redirect_to("/users", {:notice => "#{@user.username} has not accepted your follow request"})
+        end
+      else
+        render({:template => "users/show.html.erb"})
+      end
+
+
     else
       redirect_to("/user_sign_in", { :notice => "You must sign in first." })
     end
