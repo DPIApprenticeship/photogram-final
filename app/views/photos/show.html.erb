@@ -143,3 +143,10 @@
 </div>
 
 <hr>
+
+<form action="/insert_comment" method="post">
+  <input type="hidden" name="query_photo_id" value="<%= @the_photo.id %>">
+  <label for="comment">Comment</label>
+  <textarea id="comment" name="query_body"></textarea>
+  <button>Add comment</button>
+</form>
