@@ -13,9 +13,9 @@
 
 <ul>
   <li><a href="/users/<%= @user.username %>">Profile</a></li>
-  <li><a>Liked Photos</a></li>
-  <li><a>Feed</a></li>
-  <li><a>Discover</a></li>
+  <li><a href="/users/<%= @user.username %>/liked_photos">Liked Photos</a></li>
+  <li><a  href="/users/<%= @user.username %>/feed">Feed</a></li>
+  <li><a  href="/users/<%= @user.username %>/discover">Discover</a></li>
 </ul>
 
 <table border="1">
