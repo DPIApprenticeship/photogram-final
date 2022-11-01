@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         if @already_followed && requested_follow.first.status == "accepted" || @user == @current_user
           render({:template => "users/show.html.erb"})
         else
-          redirect_to("/users", {:notice => "#{@user.username} has not accepted your follow request"})
+          redirect_to("/users", {:notice => "You have to sign in first."})
         end
       else
         render({:template => "users/show.html.erb"})

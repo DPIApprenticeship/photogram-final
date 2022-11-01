@@ -8,19 +8,23 @@ class PhotosController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
+    if @current_user
+      the_id = params.fetch("path_id")
 
-    matching_photos = Photo.where({ :id => the_id })
+      matching_photos = Photo.where({ :id => the_id })
 
-    @the_photo = matching_photos.at(0)
+      @the_photo = matching_photos.at(0)
 
-    @already_liked = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).count > 0
+      @already_liked = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).count > 0
 
-    if @already_liked
-      @like_id = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).first.id
+      if @already_liked
+        @like_id = Like.where(:fan_id => @current_user.id).where(:photo_id => @the_photo.id).first.id
+      end
+
+      render({ :template => "photos/show.html.erb" })
+    else
+      redirect_to("/", {:alert => "You have to sign in first"})
     end
-
-    render({ :template => "photos/show.html.erb" })
   end
 
   def create
