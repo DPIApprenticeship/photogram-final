@@ -70,6 +70,19 @@
         <%= time_ago_in_words(@the_photo.updated_at) %> ago
       </dd>
 
+      <dt>Fans</dt>
+      <dd>
+        <% fan_string = "" %>
+        <% @the_photo.likes.each_with_index do |like, index| %>
+          <% if index == @the_photo.likes.count - 1 %>
+            <% fan_string += "and #{like.user.username}"%>
+          <% else %>
+            <% fan_string += "#{like.user.username}, "%>
+          <% end %>
+        <% end %>
+        <%= fan_string %>
+      </dd>
+
       <dt>
         Add a fan
       </dt>
