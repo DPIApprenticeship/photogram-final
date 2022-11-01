@@ -88,10 +88,10 @@
   </tr>
   <% @photos.each do |photo| %>
     <tr>
-      <td><img src="<%= photo.image %>"></td>
+      <td><img src="<%= photo.image %>" width="200"></td>
       <td><%= photo.user.username %></td>
       <td><%= photo.caption %></td>
-      <td><%= time_ago_in_words(photo.created_at) %></td>
+      <td><%= time_ago_in_words(photo.created_at) %> ago</td>
       <td><%= photo.likes.count %></td>
       <td><a href="/photos/<%= photo.id %>">Show details<a></td>
     </tr>

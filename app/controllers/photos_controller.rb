@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
 
       render({ :template => "photos/show.html.erb" })
     else
-      redirect_to("/", {:alert => "You have to sign in first"})
+      redirect_to("/user_sign_in", {:alert => "You have to sign in first"})
     end
   end
 
